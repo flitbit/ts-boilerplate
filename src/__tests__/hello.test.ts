@@ -1,12 +1,12 @@
-import { hello } from '../src';
+import { hello } from '..';
 
 console.log = jest.fn();
 
 describe('hello(who: string): string', () => {
-
   it('throws when who unspecified', () => {
-    expect(() => hello(undefined))
-      .toThrow('who (string) is required');
+    expect(() => hello(undefined as unknown as string)).toThrow(
+      'who (string) is required',
+    );
   });
 
   it('succeeds when who specified', () => {
@@ -14,6 +14,4 @@ describe('hello(who: string): string', () => {
     hello(tester);
     expect(console.log).toHaveBeenCalledWith(`hello ${tester}`);
   });
-
-
 });
